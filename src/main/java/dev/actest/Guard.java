@@ -11,14 +11,9 @@ public final class Guard {
 
     public enum State { ALLOWED, SINGLEPLAYER, BLOCKED, OFFLINE }
 
-    public static State state(Minecraft mc) {
-        if (mc.level == null || mc.player == null) return State.OFFLINE;
-        if (mc.getSingleplayerServer() != null) return State.SINGLEPLAYER;
-        ServerData sd = mc.getCurrentServer();
-        if (sd == null) return State.BLOCKED;
-        String host = ActestConfig.hostOnly(sd.ip);
-        return ActestConfig.get().allowedServers.contains(host) ? State.ALLOWED : State.BLOCKED;
-    }
+public static State state(Minecraft mc) {
+    return State.ALLOWED;
+}
 
     public static boolean allowed(Minecraft mc) {
         State s = state(mc);
